@@ -242,47 +242,68 @@
     `owner: root`
 
     `mode: '0644' `
-    
 
-📂 file (Manage Files/Dirs)
 
-file:
-  path: /var/www/html
-  state: directory
-  mode: '0755'
+### 📂 file (Manage Files/Dirs)
 
-👤 user (User Management)
+- `file:` 
 
-user:
-  name: devops
-  state: present
-  groups: sudo
+   `path: /var/www/html`
 
-🌐 get_url (Download Files)
+   `state: directory`
 
-get_url:
-  url: https://example.com/app.tar.gz
-  dest: /tmp/app.tar.gz
+   `mode: '0755'`
 
-Playbook Execution
 
-ansible-playbook playbook.yml
+### 👤 user (User Management)
 
-Sample Playbook ⭐
+- `user:`
 
-- name: Install Nginx
-  hosts: web
-  become: yes
+   `name: devops`
 
-  tasks:
-    - name: Install package
-      apt:
-        name: nginx
-        state: present
-        update_cache: yes
+   `state: present`
 
-    - name: Start service
-      service:
-        name: nginx
-        state: started
-        enabled: yes
+   `groups: sudo`
+
+
+### 🌐 get_url (Download Files)
+
+- `get_url:`
+
+   `url: https://example.com/app.tar.gz`
+
+   `dest: /tmp/app.tar.gz`
+
+
+
+### Sample Playbook ⭐
+
+- `name: Install Nginx`
+
+  `hosts: web`
+
+  `become: yes`
+  
+  `tasks:`
+
+    - `name: Install package`
+
+      `apt:`
+
+        `name: nginx`
+
+        `state: present`
+
+        `update_cache: yes`
+
+
+    - `name: Start service`
+
+      `service:`
+
+        `name: nginx`
+
+        `state: started`
+
+        `enabled: yes`
+----------------------------------------------
