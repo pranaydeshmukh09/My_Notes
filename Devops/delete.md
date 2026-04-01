@@ -1,116 +1,181 @@
-# DevOps Commands Reference
+1️⃣ Git Commands
+----------------
 
----
+### **Basic Setup**
 
-## 1️⃣ Git Commands
+`   # Set username and emailgit config --global user.name "Your Name"git config --global user.email "your.email@example.com"# Check configurationgit config --list   `
 
-### Basic Setup
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "your.email@example.com"
-git config --list
-Repository Operations
-git init
-git clone <repo_url>
-Working with Changes
-git status
-git add <file>       # single file
-git add .            # all files
-git commit -m "Commit message"
-git commit -a -m "Commit message"   # Commit all changes without staging
-Branching
-git branch
-git branch <branch_name>
-git checkout <branch_name>
-git checkout -b <branch_name>      # Create & switch
-Merging & History
-git merge <branch_name>
-git log
-git log --oneline
-Remote Repositories
-git remote add origin <repo_url>
-git push -u origin <branch_name>
-git pull origin <branch_name>
-git fetch
+### **Repository Operations**
+
+`# Initialize a repositorygit init# Clone a repositorygit clone` 
+
+### **Working with Changes**
+
+`   # Check statusgit status# Add files to staginggit add        # single filegit add .            # all files# Commit changesgit commit -m "Commit message"git commit -a -m "Commit message"   # Commit all changes without staging   `
+
+### **Branching**
+
+`# List branchesgit branch# Create a new branchgit branch # Switch branchgit checkout # Create & switch in one commandgit checkout -b` 
+
+### **Merging & History**
+
+`   # Merge branch into current branchgit merge # Show commit historygit loggit log --oneline   `
+
+### **Remote Repositories**
+
+`   # Add remote repositorygit remote add origin # Push branch to remotegit push -u origin # Pull latest changesgit pull origin # Fetch updates without merginggit fetch   `
+
 2️⃣ GitHub Commands & Workflow
-Fork: Copy someone else’s repo to your GitHub account
-Pull Request: Request to merge your changes to the original repo
-git clone <forked_repo_url>
-git remote add upstream <original_repo_url>
-git fetch upstream
-git merge upstream/main
+------------------------------
+
+### **Fork & Pull Requests**
+
+*   Fork: Copy someone else’s repo to your GitHub account.
+    
+*   Pull Request: Request to merge your changes to the original repo.
+    
+
+### **Cloning & Working**
+
+`# Clone your forked repogit clone` 
+
+### **Sync Fork**
+
+`   # Add upstream (original repo)git remote add upstream # Fetch updates from original repogit fetch upstream# Merge upstream changes into your branchgit merge upstream/main   `
+
 3️⃣ Ansible Commands
-Ad-Hoc Command Syntax
-ansible <hosts> -i <inventory> -m <module> -a "<arguments>" -b
+--------------------
 
-Explanation:
+### **Ad-Hoc Command Syntax**
 
-<hosts> → Target host(s) (all, webservers, etc.)
-<inventory> → Inventory file path
-<module> → Action to perform (file, shell, apt, etc.)
-<arguments> → Module-specific parameters
--b → Become (sudo)
-Ansible Modules Quick Reference
-1. ping module – Check if target hosts are reachable
-ansible all -i ~/ansible/inventory -m ping
+`   ansible  -i  -m  -a "" -b   `
 
-Arguments: data="any_text" → Optional message sent back
+**Explanation**:
 
-2. shell / command module – Run shell commands on remote hosts
-ansible all -i ~/ansible/inventory -m shell -a "uptime"
+*   → Target host(s) (all, webservers, etc.)
+    
+*   → Inventory file path
+    
+*   → Action to perform (file, shell, apt, etc.)
+    
+*   → Module-specific parameters
+    
+*   \-b → Become (sudo)
+    
 
-Arguments:
+### **Ansible Modules Quick Reference**
 
-cmd="command" → Command to execute
-chdir="/path" → Change directory before running
-creates="/path/file" → Skip if file exists
-removes="/path/file" → Skip if file missing
-3. file module – Create, remove, or manage files and directories
-ansible all -i ~/ansible/inventory -m file -a "path=/tmp/devops.txt state=absent" -b
+#### **1\. ping module –** Check if target hosts are reachable
 
-Arguments:
+`   ansible all -i ~/ansible/inventory -m ping   `
 
-path="/path/to/file_or_dir" → Target path
-state=absent|directory|file|touch|link → Desired state
-mode="0644" → File permissions
-owner="user" → File owner
-group="group" → File group
-4. copy module – Copy files from control node to managed nodes
-ansible all -i ~/ansible/inventory -m copy -a "src=/etc/hosts dest=/tmp/hosts_copy" -b
+**Arguments:**
 
-Arguments:
+*   data="any\_text" → Optional message sent back
+    
 
-src="/path/source_file" → Source file
-dest="/path/dest_file" → Destination path
-owner="user" → File owner
-group="group" → File group
-mode="0644" → File permissions
-backup=yes|no → Backup existing file
-5. service module – Start, stop, or manage services on hosts
-ansible all -i ~/ansible/inventory -m service -a "name=nginx state=started enabled=yes" -b
+#### **2\. shell / command module –** Run shell commands on remote hosts
 
-Arguments:
+`   ansible all -i ~/ansible/inventory -m shell -a "uptime"   `
 
-name="service_name" → Service to manage
-state=started|stopped|restarted|reloaded → Desired state
-enabled=yes|no → Enable at boot
-6. yum / apt module – Install, update, or remove packages
-ansible all -i ~/ansible/inventory -m yum -a "name=httpd state=latest" -b
-ansible all -i ~/ansible/inventory -m apt -a "name=nginx state=present" -b
+**Arguments:**
 
-Arguments:
+*   cmd="command" → Command to execute
+    
+*   chdir="/path" → Change directory first
+    
+*   creates="/path/file" → Skip if file exists
+    
+*   removes="/path/file" → Skip if file missing
+    
 
-name="package_name" → Package name
-state=present|absent|latest → Desired state
-update_cache=yes|no → Refresh package cache
-7. user module – Create or manage users on hosts
-ansible all -i ~/ansible/inventory -m user -a "name=devops state=present password=<hash>" -b
+#### **3\. file module –** Create, remove, or manage files and directories
 
-Arguments:
+`   ansible all -i ~/ansible/inventory -m file -a "path=/tmp/devops.txt state=absent" -b   `
 
-name="username" → User name
-state=present|absent → Create or remove user
-password="<hashed_password>" → Set password
-shell="/bin/bash" → Login shell
-groups="group1,group2" → Add user to groups
-append=yes|no → Append groups without removing
+**Arguments:**
+
+*   path="/path/to/file\_or\_dir" → Target path
+    
+*   state=absent|directory|file|touch|link → Desired state
+    
+*   mode="0644" → File permissions
+    
+*   owner="user" → File owner
+    
+*   group="group" → File group
+    
+
+#### **4\. copy module –** Copy files from control node to managed nodes
+
+`   ansible all -i ~/ansible/inventory -m copy -a "src=/etc/hosts dest=/tmp/hosts_copy" -b   `
+
+**Arguments:**
+
+*   src="/path/source\_file" → Source file
+    
+*   dest="/path/dest\_file" → Destination path
+    
+*   owner="user" → File owner
+    
+*   group="group" → File group
+    
+*   mode="0644" → File permissions
+    
+*   backup=yes|no → Backup existing file
+    
+
+#### **5\. service module –** Start, stop, or manage services on hosts
+
+`   ansible all -i ~/ansible/inventory -m service -a "name=nginx state=started enabled=yes" -b   `
+
+**Arguments:**
+
+*   name="service\_name" → Service to manage
+    
+*   state=started|stopped|restarted|reloaded → Desired state
+    
+*   enabled=yes|no → Enable at boot
+    
+
+#### **6\. yum / apt module –** Install, update, or remove packages
+
+`   ansible all -i ~/ansible/inventory -m yum -a "name=httpd state=latest" -bansible all -i ~/ansible/inventory -m apt -a "name=nginx state=present" -b   `
+
+**Arguments:**
+
+*   name="package\_name" → Package name
+    
+*   state=present|absent|latest → Desired state
+    
+*   update\_cache=yes|no → Refresh package cache
+    
+
+#### **7\. user module –** Create or manage users on hosts
+
+`   ansible all -i ~/ansible/inventory -m user -a "name=devops state=present password=" -b   `
+
+**Arguments:**
+
+*   name="username" → User name
+    
+*   state=present|absent → Create or remove user
+    
+*   password="" → Set password
+    
+*   shell="/bin/bash" → Login shell
+    
+*   groups="group1,group2" → Add user to groups
+    
+*   append=yes|no → Append groups without removing
+    
+
+✅ **Tips:**
+
+*   Always use -i if inventory is not default.
+    
+*   Test commands first with ping.
+    
+*   Group hosts in inventory for easier management.
+    
+*   Use YAML playbooks for repetitive tasks.
