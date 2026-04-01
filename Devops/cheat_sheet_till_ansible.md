@@ -147,43 +147,43 @@
 -   `unzip` → extract zip
 
 ---
-1️⃣7️⃣ 🔧 Git & GitHub (Version Control)
+## 1️⃣7️⃣ 🔧 Git & GitHub (Version Control)
 
-👉 Used for tracking code, collaboration, and deployments
 
-Basic Git Setup
 
-git config --global user.name "name"
-git config --global user.email "email"
+### Basic Git Setup
 
-Repository Setup
+`git config --global user.name "name"`
+`git config --global user.email "email"`
 
-git init → initialize repo
-git clone <repo_url> → copy repo
+### Repository Setup
 
-Daily Workflow ⭐
+`git init` → initialize repo
+`git clone <repo_url>` → copy repo
 
-git status → check changes
-git add . → stage all changes
-git commit -m "message" → save changes
-git push origin main → upload to GitHub
-git pull origin main → get latest changes
+### Daily Workflow ⭐
 
-Branching (Important)
+`git status` → check changes
+`git add .` → stage all changes
+`git commit -m "message"` → save changes
+`git push origin main` → upload to GitHub
+`git pull origin main` → get latest changes
 
-git branch → list branches
-git branch <name> → create branch
-git checkout <branch> → switch branch
-git checkout -b <name> → create + switch
-git merge <branch> → merge branch
+### Branching (Important)
 
-Undo / Fix Mistakes
+`git branch` → list branches
+`git branch <name>` → create branch
+`git checkout <branch>` → switch branch
+`git checkout -b <name>` → create + switch
+`git merge <branch>` → merge branch
 
-git restore <file> → discard changes
-git reset --soft HEAD~1 → undo commit (keep changes)
-git reset --hard HEAD~1 → undo commit (delete changes)
+### Undo / Fix Mistakes
 
-💡 Real Use:
+`git restore <file>` → discard changes
+`git reset --soft HEAD~1` → undo commit (keep changes)
+`git reset --hard HEAD~1` → undo commit (delete changes)
+
+### 💡 Real Use:
 
 * Code backup
 * Team collaboration
