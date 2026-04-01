@@ -153,35 +153,35 @@
 
 ### Basic Git Setup
 
-`git config --global user.name "name"`
-`git config --global user.email "email"`
+- `git config --global user.name "name"`
+- `git config --global user.email "email"`
 
 ### Repository Setup
 
-`git init` → initialize repo
-`git clone <repo_url>` → copy repo
+- `git init` → initialize repo
+- `git clone <repo_url>` → copy repo
 
 ### Daily Workflow ⭐
 
-`git status` → check changes
-`git add .` → stage all changes
-`git commit -m "message"` → save changes
-`git push origin main` → upload to GitHub
-`git pull origin main` → get latest changes
+- `git status` → check changes
+- `git add .` → stage all changes
+- `git commit -m "message"` → save changes
+- `git push origin main` → upload to GitHub
+- `git pull origin main` → get latest changes
 
 ### Branching (Important)
 
-`git branch` → list branches
-`git branch <name>` → create branch
-`git checkout <branch>` → switch branch
-`git checkout -b <name>` → create + switch
-`git merge <branch>` → merge branch
+- `git branch` → list branches
+- `git branch <name>` → create branch
+- `git checkout <branch>` → switch branch
+- `git checkout -b <name>` → create + switch
+- `git merge <branch>` → merge branch
 
 ### Undo / Fix Mistakes
 
-`git restore <file>` → discard changes
-`git reset --soft HEAD~1` → undo commit (keep changes)
-`git reset --hard HEAD~1` → undo commit (delete changes)
+- `git restore <file>` → discard changes
+- `git reset --soft HEAD~1` → undo commit (keep changes)
+- `git reset --hard HEAD~1` → undo commit (delete changes)
 
 ### 💡 Real Use:
 
@@ -191,52 +191,58 @@
 
 ---
 
-1️⃣8️⃣ ⚙️ Ansible (Automation & Configuration Management)
+## 1️⃣8️⃣ ⚙️ Ansible (Automation & Configuration Management)
 
-👉 Used to automate servers, deployments, and configs
 
-Basic Concepts ⭐
+### Basic Concepts ⭐
 
 * Inventory → list of servers
 * Playbook → automation file (YAML)
 * Task → single action
 * Module → unit of work
 
-Inventory File Example
+### Basic Commands
 
-[web]
-192.168.1.10
-192.168.1.11
+- `ansible all -m ping` → check connectivity
+- `ansible all -a "uptime"` → run command
+- `ansible web -m apt -a "name=nginx state=present"`
 
-Basic Commands
+## 🔧 Common Modules + Important Arguments ⭐
 
-ansible all -m ping → check connectivity
-ansible all -a "uptime" → run command
-ansible web -m apt -a "name=nginx state=present"
+### 📦 apt (Package Management)
 
-🔧 Common Modules + Important Arguments ⭐
+- `apt:`
 
-📦 apt (Package Management)
+    `name: nginx`
 
-apt:
-  name: nginx
-  state: present
-  update_cache: yes
+    `state: present`
 
-⚙️ service (Manage Services)
+    `update_cache: yes`
 
-service:
-  name: nginx
-  state: started
-  enabled: yes
 
-📁 copy (Copy Files)
+### ⚙️ service (Manage Services)
 
-copy:
-  src: index.html
-  dest: /var/www/html/index.html
-  owner: root
-  mode: '0644'
+- `service:`
+
+    `name: nginx`
+
+    `state: started`
+
+    `enabled: yes`
+
+
+### 📁 copy (Copy Files)
+
+- `copy:`
+
+    `src: index.html`
+
+    `dest: /var/www/html/index.html`
+
+    `owner: root`
+
+    `mode: '0644' `
+    
 
 📂 file (Manage Files/Dirs)
 
