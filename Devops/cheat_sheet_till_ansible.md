@@ -124,7 +124,7 @@
 
 -   `set -x` → debug script
 -   `set -e` → exit on error
--   `set -o pipefail` → fail if any command fails
+-   `set -o pipefail` → fail script if any command fails
 
 ------------------------------------------------------------------------
 
